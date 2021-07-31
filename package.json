@@ -1,0 +1,12 @@
+{
+  "name": "introduction-js",
+  "version": "1.0.0",
+  "description": "Eurocopa",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Méndez Estrada",
+  "license": "ISC",
+  "type": "module"
+}
