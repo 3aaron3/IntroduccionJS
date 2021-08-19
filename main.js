@@ -167,7 +167,9 @@ class Finales extends TercerCuarto{
     }
     
     goalsFinales(){
+        console.log("THISthis.resultSemifinalesNoKey:"+this.resultSemifinalesNoKey);    
         let teamMatched=calcMatches(this.resultSemifinalesNoKey);
+        console.log("teamMatched:"+JSON.stringify(teamMatched));
         console.log(
             "\n===== FINALES =====\n"
         )
@@ -182,6 +184,10 @@ class Finales extends TercerCuarto{
             if(GF>GC){
                 console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
                 this.winner.push(teamMatched[i].team1);
+            }
+            else{
+                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
+                this.winner.push(teamMatched[i].team2);
             }
                        
         }
