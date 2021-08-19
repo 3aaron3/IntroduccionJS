@@ -1,5 +1,5 @@
 import {teams} from '../teams.js';
-import {calcMatches} from '../functions/calcMatches.js';
+import {calcMatches, calcPoints} from '../functions/calcMatchesAndPoints.js';
 
 class Octavos{
     constructor(resultOctavosNoKey=[]){
@@ -14,24 +14,7 @@ class Octavos{
             "=================================================\n\n",
             "===== OCTAVOS DE FINAL =====\n"
         )
-        let GF;
-        let GC;
-        for(let i=0;i<teamMatched.length;i++){
-            GF=Math.floor(Math.random() * 7);
-            GC=Math.floor(Math.random() * 7);
-            while(GF===GC){
-                GC=Math.floor(Math.random() * 7);
-            }
-            if(GF>GC){
-                this.resultOctavosNoKey.push(teamMatched[i].team1);
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
-            }
-            else{
-                this.resultOctavosNoKey.push(teamMatched[i].team2);
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
-            }
-            
-        }
+        calcPoints(teamMatched, this.resultOctavosNoKey);        
     }
 }
 class Cuartos extends Octavos{
@@ -45,24 +28,7 @@ class Cuartos extends Octavos{
         console.log(
             "\n===== CUARTOS DE FINAL =====\n"
         )
-        let GF;
-        let GC;
-        for(let i=0;i<teamMatched.length;i++){
-            GF=Math.floor(Math.random() * 7);
-            GC=Math.floor(Math.random() * 7);
-            while(GF===GC){
-                GC=Math.floor(Math.random() * 7);
-            }
-            if(GF>GC){
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
-                this.resultCuartosNoKey.push(teamMatched[i].team1);
-            }
-            else{
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
-                this.resultCuartosNoKey.push(teamMatched[i].team2);
-            }
-            
-        }
+        calcPoints(teamMatched, this.resultCuartosNoKey);
     }
 }
 
@@ -71,7 +37,6 @@ class Semifinales extends Cuartos{
         super(resultOctavosNoKey, resultCuartosNoKey);
         this.resultSemifinalesNoKey=resultSemifinalesNoKey;
         this.resultTercerCuartoNoKey=resultTercerCuartoNoKey;
-
     }
     
     goalsSemifinales(){
@@ -79,26 +44,7 @@ class Semifinales extends Cuartos{
         console.log(
             "\n===== SEMIFINALES =====\n"
         )
-        let GF;
-        let GC;
-        for(let i=0;i<teamMatched.length;i++){
-            GF=Math.floor(Math.random() * 7);
-            GC=Math.floor(Math.random() * 7);
-            while(GF===GC){
-                GC=Math.floor(Math.random() * 7);
-            }
-            if(GF>GC){
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
-                this.resultSemifinalesNoKey.push(teamMatched[i].team1);
-                this.resultTercerCuartoNoKey.push(teamMatched[i].team2);
-            }
-            else{
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
-                this.resultSemifinalesNoKey.push(teamMatched[i].team2);
-                this.resultTercerCuartoNoKey.push(teamMatched[i].team1);
-            }
-            
-        }
+        calcPoints(teamMatched, this.resultSemifinalesNoKey, this.resultTercerCuartoNoKey);
     }
 }
 
@@ -112,22 +58,7 @@ class TercerCuarto extends Semifinales{
         console.log(
             "\n===== TERCER Y CUARTO PUESTO =====\n"
         )
-        let GF;
-        let GC;
-        for(let i=0;i<teamMatched.length;i++){
-            GF=Math.floor(Math.random() * 7);
-            GC=Math.floor(Math.random() * 7);
-            while(GF===GC){
-                GC=Math.floor(Math.random() * 7);
-            }
-            if(GF>GC){
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
-            }
-            else{
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
-            }
-            
-        }
+        calcPoints(teamMatched);
     }
 }
 
@@ -142,25 +73,7 @@ class Finales extends TercerCuarto{
         console.log(
             "\n===== FINALES =====\n"
         )
-        let GF;
-        let GC;
-        for(let i=0;i<teamMatched.length;i++){
-            GF=Math.floor(Math.random() * 7);
-            GC=Math.floor(Math.random() * 7);
-            while(GF===GC){
-                GC=Math.floor(Math.random() * 7);
-            }
-            if(GF>GC){
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team1}`);
-                this.winner.push(teamMatched[i].team1);
-            }
-            else{
-                console.log(`${teamMatched[i].team1} ${GF} - ${GC} ${teamMatched[i].team2} => ${teamMatched[i].team2}`);
-                this.winner.push(teamMatched[i].team2);
-            }
-                       
-        }
-        
+        calcPoints(teamMatched, this.winner);        
     }
     
 }
